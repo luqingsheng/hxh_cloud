@@ -1,0 +1,17 @@
+server:  # 服务端口
+  port: 8761
+eureka:
+  instance:
+    hostname: hxh-eureka1
+  client:
+    service-url:   #  eureka server 的地址
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    register-with-eureka: false  # 不向eureka server 注册自己
+    fetch-registry: false  # 不向eureka server 获取服务列表
+
+spring:
+  security:  # 配置访问Eureka账户密码
+    user:
+      name: hxheureka
+      password: hanxiaohu
+

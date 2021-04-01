@@ -1,0 +1,4 @@
+#hxh
+spring:
+  profiles:
+    active: dev

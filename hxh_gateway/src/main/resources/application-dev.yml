@@ -1,0 +1,38 @@
+#hxh
+server:
+  port: 8762
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true  #开启小写验证，默认feign根据服务名查找都是用的全大写
+      routes:
+        - id: hxh_test              #   #路由的ID，没有固定规则但要求唯一，简易配合服务名
+          uri: lb://hxh-test        #匹配后提供服务的路由地址
+          predicates:
+            - Path=/hxh/test/**       #断言，路径相匹配的进行路由
+          filters:
+            - StripPrefix=1           #过滤剥离发送后参数
+        - id: hxh_btest #   #路由的ID，没有固定规则但要求唯一，简易配合服务名
+          uri: lb://hxh-btest          #匹配后提供服务的路由地址
+          predicates:
+            - Path=/hxh/btest/**           #断言，路径相匹配的进行路由
+          filters:
+            - StripPrefix=1
+
+  application:
+    name: hxh-gateway
+    #数据库连接信息
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: hanxiaohu
+    url:  jdbc:mysql://localhost:3306/hxh?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC&serverTimezone=Asia/Shanghai
+
+#配置连接Eureka
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url:
+      defaultZone: http://hxheureka:hanxiaohu@hxh-eureka1:8761/eureka/  #Eureka地址的IP地址以及端口号

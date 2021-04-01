@@ -1,0 +1,26 @@
+#端口配置hxh
+server:
+  port: 8090
+  servlet:
+    context-path: /test
+spring:
+  application:
+    name: hxh-test
+    #数据库连接信息
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: hanxiaohu
+    url:  jdbc:mysql://localhost:3306/hxh?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC&serverTimezone=Asia/Shanghai
+
+#配置连接Eureka
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url:
+      defaultZone: http://hxheureka:hanxiaohu@hxh-eureka1:8761/eureka/  #Eureka地址的IP地址以及端口号
+
+#feign fallback 配置
+feign:
+  hystrix:
+    enabled: true
+

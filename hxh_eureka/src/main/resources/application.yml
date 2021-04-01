@@ -1,0 +1,5 @@
+spring:
+  application:  # 应用名字，eureka 会根据它作为服务id
+    name: hxh-eureka
+  profiles:
+    active: dev

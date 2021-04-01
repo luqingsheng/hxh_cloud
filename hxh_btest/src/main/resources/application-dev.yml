@@ -1,0 +1,13 @@
+server:
+  port: 8091
+  servlet:
+    context-path: /btest
+
+#配置连接Eureka
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url:
+      defaultZone: http://hxheureka:hanxiaohu@hxh-eureka1:8761/eureka/  #Eureka地址的IP地址以及端口号
+spring:
+  application:
+    name: hxh-btest
